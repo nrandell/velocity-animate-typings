@@ -2,8 +2,7 @@
 // Project: http://velocityjs.org/
 // Definitions by: Greg Smith <https://github.com/smrq/>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
-
-/// <reference path="../jquery/jquery.d.ts" />
+// Modified by: Nick Randell <https://github.com/nrandell>
 
 interface JQuery {
 	velocity(name: string, options: jquery.velocity.RegisteredEffectOptions): JQuery;
@@ -68,7 +67,7 @@ declare namespace jquery.velocity {
 	}
 
 	interface SequenceCall {
-		e: HTMLElement|JQuery;
+		e: HTMLElement|JQuery|HTMLElement[];
 		p: Properties;
 		o: SequenceOptions;
 	}
@@ -79,8 +78,8 @@ declare namespace jquery.velocity {
 
 	interface VelocityStatic {
 		Sequences: any;
-		animate(options: {elements: NodeListOf<HTMLElement>; properties: Properties; options: Options}): any;
-		animate(elements: HTMLElement|NodeListOf<HTMLElement>, properties: Properties, options: Options): any;
+		animate(options: {elements: NodeListOf<HTMLElement>; properties: Properties; options: Options}): Promise<any>;
+		animate(elements: HTMLElement|NodeListOf<HTMLElement>|HTMLElement[]|SVGElement|SVGElement[]|any[], properties: Properties, options: Options): Promise<any>;
 		RegisterEffect(name: string, options: RegisterEffectOptions): VelocityStatic;
 		RunSequence(sequence: SequenceCall[]): VelocityStatic;
 
